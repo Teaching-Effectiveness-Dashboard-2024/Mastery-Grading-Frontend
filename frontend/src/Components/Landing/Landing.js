@@ -316,39 +316,45 @@ const Landing = () => {
             <Grid md={2}></Grid>
 
             <Grid md={1}></Grid>
-            <Grid md={8}  style={{marginTop: "4%"}}>
+            <Grid md={8} >
                 <Text h5 fullWidth={true} color="warning">Create Canvas API Access token before signing up, use below tutorial for creating API token.</Text>
             </Grid>
             <Grid md={3}></Grid>
             <Grid md={1}></Grid>
             <Grid md={11} >
-                <Text fullWidth={true}>Step 1: Login into your Canvas LMS application.</Text>
+                <Text style={{color:"red", paddingRight:"10px"}} fullWidth={true}>Step 1:</Text>
+                <Text fullWidth={true} > Login into your Canvas LMS application.</Text>
             </Grid>
             <Grid md={1}></Grid>
 
             <Grid md={11} style={{marginTop: "1%"}}>
-                <Text fullWidth={true}>Step 2: Click on "Account" on the left navigation bar.</Text>
+                <Text style={{color:"red", paddingRight:"10px"}} fullWidth={true}>Step 2: </Text>
+                <Text fullWidth={true}> Click on "Account" on the left navigation bar.</Text>
             </Grid>
             <Grid md={1}></Grid>
 
             <Grid md={11} style={{marginTop: "1%"}}>
-                <Text fullWidth={true}>Step 3: Click on "Settings" button.</Text>
+                <Text  style={{color:"red",paddingRight:"10px"}} fullWidth={true}>Step 3:</Text>
+                <Text fullWidth={true}> Click on "Settings" button.</Text>
             </Grid>
             <Grid md={1}></Grid>
 
             <Grid md={11} style={{marginTop: "1%"}}>
-                <Text fullWidth={true}>Step 4: In "Settings" page scroll down until you find "+ New Access Token" button.</Text>
+                <Text  style={{color:"red",paddingRight:"10px"}}  fullWidth={true}>Step 4:</Text>
+                <Text fullWidth={true} >In "Settings" page scroll down until you find "+ New Access Token" button.</Text>
             </Grid>
             <Grid md={1}></Grid>
 
             <Grid md={11} style={{marginTop: "1%"}}>
-                <Text fullWidth={true}>Step 5: Specify the purpose and expiry dates after clicking the "+ New Access Token" button.</Text>
+                <Text style={{color:"red",paddingRight:"10px"}}  fullWidth={true}>Step 5:</Text>
+                <Text fullWidth={true}> Specify the purpose and expiry dates after clicking the "+ New Access Token" button.</Text>
             </Grid>
             <Grid md={1}></Grid>
 
             <Grid md={11} style={{marginTop: "1%"}}>
 
-                <Text fullWidth={true} >Step 6: Click "Generate Token" button to generate your API token and save/copy it to provide it during sigining up.</Text>
+                <Text style={{color:"red",paddingRight:"10px"}}  fullWidth={true} >Step 6:</Text>
+                <Text fullWidth={true}> Click "Generate Token" button to generate your API token and save/copy it to provide it during sigining up.</Text>
             </Grid>
             <Grid md={12}></Grid>
             <Grid md={1}></Grid>
@@ -367,25 +373,18 @@ const Landing = () => {
 
     return <>
 
-
-        <Grid.Container gap={2}>
-
-            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh"}}>
-                <LandingNavbar/>
-            </Grid>
-            <Grid md={8} style={{ maxWidth: "100vw", height: "80vh", backgroundColor: '#0e1111'}}>
-                {tutorial}
-            </Grid>
-
-            <Grid md={4} style={{ maxWidth: "100vw", height: "80vh"}}>
-                {isSignup ? signup : login}
-            </Grid>
-            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh", backgroundColor: '#333',display: "flex",
-                justifyContent: "center",
-                alignItems: "center" }} justify={"center"}>
-                <Footer/>
-            </Grid>
-        </Grid.Container>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", overflow:"hidden"}}>
+            <LandingNavbar />
+            <Grid.Container gap={2} style={{ flexGrow: 1 }}>
+                <Grid md={8} style={{ backgroundColor: '#0e1111' }}>
+                    {tutorial}
+                </Grid>
+                <Grid md={4}>
+                    {isSignup ? signup : login}
+                </Grid>
+            </Grid.Container>
+            <Footer />
+        </div>
 
     </>
 
