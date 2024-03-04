@@ -2,8 +2,8 @@ import {Button, Grid, Input, Link, Text} from "@nextui-org/react";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import  LandingNav from "../Navbar/LandingNavbar";
 import LandingNavbar from "../Navbar/LandingNavbar";
+import Footer from "../Footer/Footer";
 
 
 const Landing = () => {
@@ -12,15 +12,16 @@ const Landing = () => {
 
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
-
     const [loginMessage, setLoginMessage] = useState('')
+
     const [signupMessage, setSignupMessage] = useState('')
     const [isSignup, isSetSignup] = useState(false)
     const [signupData, setSignupData] = useState({
-        userName: '',
+        email: '',
         password: '',
         rePassword: '',
-        email: ''
+        api_token:''
+
     })
 
     const [width, setWidth] = useState(window.innerWidth);
@@ -31,11 +32,11 @@ const Landing = () => {
 
     useEffect(() => {
 
-        const token = localStorage.getItem("token")
+        const email = localStorage.getItem("email")
 
-        console.log(token);
-        if(token !=null){
-            navigate('/poll')
+        console.log(email);
+        if(email !=null){
+            navigate('/dashboard')
         }
 
         window.addEventListener('resize', handleWindowSizeChange);
@@ -44,15 +45,13 @@ const Landing = () => {
         }
     }, []);
 
-    const isMobile = width <= 768;
-    // console.log(isMobile + "edokati");
 
     const handleLoginEmailChange = (e) => setLoginEmail(e.target.value)
 
     const handleLoginPasswordChange = (e) => setLoginPassword(e.target.value)
 
 
-    const userNameChange = (e) => setSignupData({...signupData, userName: e.target.value})
+    const apiTokenChange = (e) => setSignupData({...signupData, api_token: e.target.value})
 
     const signupEmailChange = (e) => setSignupData({...signupData, email: e.target.value})
 
@@ -75,10 +74,8 @@ const Landing = () => {
 
                 console.log("from login")
                 console.log(response);
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('userId', response.data.userId);
-                localStorage.setItem('userName', response.data.userName)
-                navigate('/mapping')
+                localStorage.setItem('email', response.data.email)
+                navigate('/dashboard')
             } catch (e) {
                 setLoginMessage("Login Failed, try again")
                 setLoginEmail('')
@@ -94,7 +91,7 @@ const Landing = () => {
 
         //todo => include validations
 
-        if (signupData.userName === '' || signupData.email === '' || signupData.password === '' || signupData.rePassword === '')
+        if (signupData.api_token === '' || signupData.email === '' || signupData.password === '' || signupData.rePassword === '')
             setSignupMessage("Fields can't be empty")
 
         else if (signupData.password !== signupData.rePassword)
@@ -102,25 +99,24 @@ const Landing = () => {
 
         else {
             const data = {
-                userName: signupData.userName,
                 email: signupData.email,
-                password: signupData.password
+                password: signupData.password,
+                api_token: signupData.api_token,
             }
 
             try {
                 const response = await axios.post(process.env.REACT_APP_SERVER_URL + '/signup', data)
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('userId', response.data.userId);
-                localStorage.setItem('userName', response.data.userName)
-                navigate('/poll')
+                // localStorage.setItem('token', response.data.token);
+                localStorage.setItem('userId', response.data.email);
+                navigate('/dashboard')
             } catch (e) {
                 setSignupMessage("Signup Failed, try again")
                 setSignupData({
                     ...signupData,
-                    userName: '',
+                    email: '',
                     password: '',
                     rePassword: '',
-                    email: ''
+                    api_token:''
                 })
             }
 
@@ -155,53 +151,53 @@ const Landing = () => {
             }}>Login to your Account</Text></Grid>
             <Grid md={3}></Grid>
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "5%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Input type="email" size="md" variant="bordered" labelPlaceholder={"Enter Email"} fullWidth={true}
                        onChange={handleLoginEmailChange} value={loginEmail}/>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "5%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Input.Password type="Password" size="md" variant="bordered" labelPlaceholder={"Enter Password"}
                                 fullWidth={true} onChange={handleLoginPasswordChange} value={loginPassword}/>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
 
-            <Grid xs={3} md={4}></Grid>
-            <Grid xs={6} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Button type={"submit"} onPress={loginSubmitHandler} style={{zIndex:1}}>Sign In</Button>
             </Grid>
-            <Grid xs={3} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={2} md={2}></Grid>
-            <Grid xs={8} md={8} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Text h4 color="error">
                     {loginMessage}
                 </Text>
             </Grid>
-            <Grid xs={2} md={2}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={4} md={4}></Grid>
-            <Grid xs={4} md={4} justify={"center"}>
-                OR
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"}>
+                Or create a new account here👇
             </Grid>
-            <Grid xs={4} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={3}></Grid>
+            <Grid  md={6} justify={"center"} style={{marginTop: "3%"}}>
                 <Button type={"submit"} onPress={setSignUp} style={{zIndex:1}}>Sign Up</Button>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={3}></Grid>
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={4}></Grid>
+            <Grid  md={4} justify={"center"} style={{marginTop: "3%"}}>
 
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={4}></Grid>
 
 
         </Grid.Container>
@@ -218,103 +214,177 @@ const Landing = () => {
 
         <Grid.Container>
             <Grid md={3}></Grid>
-            <Grid xs={12} md={6} justify={"center"}><Text h3 css={{
+            <Grid md={6} justify={"center"}><Text h3 css={{
                 textGradient: "45deg, $yellow600 -20%, $red600 100%",
             }}>Create an Account</Text></Grid>
             <Grid md={3}></Grid>
 
             <Grid md={2}></Grid>
-            <Grid xs={12} md={8} justify={"center"}>Enter your details to create your account</Grid>
+            <Grid md={8} justify={"center"}>Enter your details to create your account</Grid>
             <Grid md={2}></Grid>
 
-
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="text" size="md" variant="bordered" labelPlaceholder={"User Name"} fullWidth={true}
-                       onChange={userNameChange} value={signupData.userName}/>
-            </Grid>
-            <Grid xs={2} md={4}></Grid>
-
-
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Input type="email" size="md" variant="bordered" labelPlaceholder={"Enter your Email"} fullWidth={true}
                        onChange={signupEmailChange} value={signupData.email}/>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
-                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Your super secret Password"}
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
+                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Password"}
                        fullWidth={true} onChange={signupPasswordChange} value={signupData.password}/>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
-                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your  secret Password"}
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
+                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your Password"}
                        fullWidth={true} onChange={signupRePasswordChange} value={signupData.rePassword}/>
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={2}></Grid>
+
+            <Grid md={2}></Grid>
+            <Grid md={8} justify={"center"} style={{marginTop: "5%"}}>
+                <Input type="text" size="md" variant="bordered" labelPlaceholder={"Enter your Canvas API token"} fullWidth={true}
+                       onChange={apiTokenChange} value={signupData.api_token}/>
+            </Grid>
+            <Grid md={2}></Grid>
 
 
-            <Grid xs={3} md={4}></Grid>
-            <Grid  xs={6} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={2}></Grid>
+            <Grid   md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Button type={"submit"} onPress={signupSubmitHandler} style={{zIndex:1}}> Sign Up</Button>
             </Grid>
-            <Grid xs={3} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={2} md={2}></Grid>
-            <Grid xs={8} md={8} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
                 <Text h4 color="error">
                     {signupMessage}
                 </Text>
             </Grid>
-            <Grid xs={2} md={2}></Grid>
+            <Grid  md={2}></Grid>
 
-            <Grid xs={4} md={4}></Grid>
-            <Grid xs={4} md={4} justify={"center"}>
-                OR
+            <Grid  md={2}></Grid>
+            <Grid  md={8} justify={"center"}>
+                Or log into your account here👇
             </Grid>
-            <Grid xs={4} md={4}></Grid>
+            <Grid  md={2}></Grid>
 
 
-            <Grid xs={3} md={4}></Grid>
-            <Grid xs={6} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={3}></Grid>
+            <Grid  md={6} justify={"center"} style={{marginTop: "5%"}}>
                 <Button type={"submit"} onPress={setSignIn} style={{zIndex:1}}>Sign In
                 </Button>
             </Grid>
-            <Grid xs={3} md={4}></Grid>
+            <Grid  md={3}></Grid>
 
 
-            <Grid xs={2} md={4}></Grid>
-            <Grid xs={8} md={4} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid  md={4}></Grid>
+            <Grid  md={4} justify={"center"} style={{marginTop: "5%"}}>
 
             </Grid>
-            <Grid xs={2} md={4}></Grid>
+            <Grid  md={4}></Grid>
+
+        </Grid.Container>
+    </div>
+
+
+    let tutorial = <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    }}>
+
+        <Grid.Container>
+            <Grid md={2}></Grid>
+            <Grid md={8} justify={"center"} style={{marginTop: "3%"}}>
+                <Text h3 css={{
+                    textGradient: "45deg, $yellow600 -20%, $red600 100%",
+                }} fullWidth={true}>Welcome to Mastery Grading App - A Canvas LMS Plugin!</Text>
+            </Grid>
+            <Grid md={2}></Grid>
+
+            <Grid md={2}></Grid>
+            <Grid md={8} justify={"center"} >
+                <Text h4 css={{
+                    textGradient: "45deg, $yellow600 -20%, $red600 100%",
+                }} fullWidth={true}>Simply get letter grades for your custom grading practices.</Text>
+            </Grid>
+            <Grid md={2}></Grid>
+
+            <Grid md={1}></Grid>
+            <Grid md={8}  style={{marginTop: "4%"}}>
+                <Text h5 fullWidth={true} color="warning">Create Canvas API Access token before signing up, use below tutorial for creating API token.</Text>
+            </Grid>
+            <Grid md={3}></Grid>
+            <Grid md={1}></Grid>
+            <Grid md={11} >
+                <Text fullWidth={true}>Step 1: Login into your Canvas LMS application.</Text>
+            </Grid>
+            <Grid md={1}></Grid>
+
+            <Grid md={11} style={{marginTop: "1%"}}>
+                <Text fullWidth={true}>Step 2: Click on "Account" on the left navigation bar.</Text>
+            </Grid>
+            <Grid md={1}></Grid>
+
+            <Grid md={11} style={{marginTop: "1%"}}>
+                <Text fullWidth={true}>Step 3: Click on "Settings" button.</Text>
+            </Grid>
+            <Grid md={1}></Grid>
+
+            <Grid md={11} style={{marginTop: "1%"}}>
+                <Text fullWidth={true}>Step 4: In "Settings" page scroll down until you find "+ New Access Token" button.</Text>
+            </Grid>
+            <Grid md={1}></Grid>
+
+            <Grid md={11} style={{marginTop: "1%"}}>
+                <Text fullWidth={true}>Step 5: Specify the purpose and expiry dates after clicking the "+ New Access Token" button.</Text>
+            </Grid>
+            <Grid md={1}></Grid>
+
+            <Grid md={11} style={{marginTop: "1%"}}>
+
+                <Text fullWidth={true} >Step 6: Click "Generate Token" button to generate your API token and save/copy it to provide it during sigining up.</Text>
+            </Grid>
+            <Grid md={12}></Grid>
+            <Grid md={1}></Grid>
+            <Grid md={11} style={{marginTop: "1%"}}>
+
+                <Link color="success" fullWidth={true} isExternal underline block href="https://youtu.be/cZ5cn8stjM0">
+                    Click on this link for a video demo
+                </Link>
+            </Grid>
+            <Grid md={12}></Grid>
+
+
 
         </Grid.Container>
     </div>
 
     return <>
 
-        <LandingNavbar/>
+
         <Grid.Container gap={2}>
 
-
-            <Grid md={6} style={{maxWidth: "100vw", height: "100vh", backgroundColor: '#0e1111'}}>
-
+            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh"}}>
+                <LandingNavbar/>
+            </Grid>
+            <Grid md={8} style={{ maxWidth: "100vw", height: "80vh", backgroundColor: '#0e1111'}}>
+                {tutorial}
             </Grid>
 
-
-            <Grid md={6} xs={12}>
-
+            <Grid md={4} style={{ maxWidth: "100vw", height: "80vh"}}>
                 {isSignup ? signup : login}
-
             </Grid>
-
-
+            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh", backgroundColor: '#333',display: "flex",
+                justifyContent: "center",
+                alignItems: "center" }} justify={"center"}>
+                <Footer/>
+            </Grid>
         </Grid.Container>
 
     </>

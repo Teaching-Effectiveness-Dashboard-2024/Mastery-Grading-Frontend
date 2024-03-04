@@ -13,8 +13,8 @@ const LandingNavbar = (props)=>{
         <Navbar.Brand>
             <MdPoll size={40}/> &nbsp;&nbsp;
 
-            <Text b color="inherit">
-                Mastery Grading App
+            <Text h2 b color="inherit" style={{marginTop: "2%"}}>
+                Mastery Grading
             </Text>
         </Navbar.Brand>
 
