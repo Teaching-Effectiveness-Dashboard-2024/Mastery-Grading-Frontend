@@ -74,12 +74,12 @@ const Landing = () => {
 
                 console.log("from login")
                 console.log(response);
-                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('email', response.data.user.email)
                 navigate('/dashboard')
             } catch (e) {
                 setLoginMessage("Login Failed, try again")
-                setLoginEmail('')
-                setLoginPassword('')
+                // setLoginEmail('')
+                // setLoginPassword('')
             }
         }
 
@@ -103,20 +103,20 @@ const Landing = () => {
                 password: signupData.password,
                 api_token: signupData.api_token,
             }
-
+            let response;
             try {
-                const response = await axios.post(process.env.REACT_APP_SERVER_URL + '/signup', data)
+                response = await axios.post(process.env.REACT_APP_SERVER_URL + '/signup', data)
                 // localStorage.setItem('token', response.data.token);
-                localStorage.setItem('userId', response.data.email);
+                localStorage.setItem('email', response.data.email);
                 navigate('/dashboard')
             } catch (e) {
-                setSignupMessage("Signup Failed, try again")
+                setSignupMessage("Signup Failed, try again:" + response.data.msg)
                 setSignupData({
                     ...signupData,
-                    email: '',
-                    password: '',
-                    rePassword: '',
-                    api_token:''
+                    // email: '',
+                    // password: '',
+                    // rePassword: '',
+                    // api_token:''
                 })
             }
 
@@ -153,14 +153,14 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="email" size="md" variant="bordered" labelPlaceholder={"Enter Email"} fullWidth={true}
+                <Input clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter Email"} fullWidth={true}
                        onChange={handleLoginEmailChange} value={loginEmail}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input.Password type="Password" size="md" variant="bordered" labelPlaceholder={"Enter Password"}
+                <Input.Password clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter Password"}
                                 fullWidth={true} onChange={handleLoginPasswordChange} value={loginPassword}/>
             </Grid>
             <Grid  md={2}></Grid>
@@ -225,7 +225,7 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="email" size="md" variant="bordered" labelPlaceholder={"Enter your Email"} fullWidth={true}
+                <Input clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter your Email"} fullWidth={true}
                        onChange={signupEmailChange} value={signupData.email}/>
             </Grid>
             <Grid  md={2}></Grid>
@@ -233,21 +233,21 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Password"}
+                <Input clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Password"}
                        fullWidth={true} onChange={signupPasswordChange} value={signupData.password}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your Password"}
+                <Input clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your Password"}
                        fullWidth={true} onChange={signupRePasswordChange} value={signupData.rePassword}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid md={2}></Grid>
             <Grid md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input type="text" size="md" variant="bordered" labelPlaceholder={"Enter your Canvas API token"} fullWidth={true}
+                <Input clearable type="text" size="md" variant="bordered" labelPlaceholder={"Enter your Canvas API token"} fullWidth={true}
                        onChange={apiTokenChange} value={signupData.api_token}/>
             </Grid>
             <Grid md={2}></Grid>
@@ -300,7 +300,7 @@ const Landing = () => {
 
         <Grid.Container>
             <Grid md={2}></Grid>
-            <Grid md={8} justify={"center"} style={{marginTop: "3%"}}>
+            <Grid md={8} justify={"center"} style={{marginTop: "2%"}}>
                 <Text h3 css={{
                     textGradient: "45deg, $yellow600 -20%, $red600 100%",
                 }} fullWidth={true}>Welcome to Mastery Grading App - A Canvas LMS Plugin!</Text>
@@ -377,16 +377,15 @@ const Landing = () => {
                 {tutorial}
             </Grid>
 
-            <Grid md={4} style={{ maxWidth: "100vw", height: "80vh"}}>
+            <Grid md={4} style={{ maxWidth: "100vw", height: "80vh", backgroundColor:'#0e1111'}}>
                 {isSignup ? signup : login}
             </Grid>
-            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh", backgroundColor: '#333',display: "flex",
+            <Grid md={12} style={{ maxWidth: "100vw", height: "10vh", backgroundColor: '#0e1111',display: "flex",
                 justifyContent: "center",
                 alignItems: "center" }} justify={"center"}>
                 <Footer/>
             </Grid>
         </Grid.Container>
-
     </>
 
 }

@@ -31,7 +31,6 @@ const theme = createTheme({
             // you can also create your own color
             myColor: '#ff4ecd'
 
-            // ...  more colors
         },
         space: {},
         fonts: {}
@@ -45,11 +44,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Landing/>}/>
-
                     <Route path='/dashboard' element={<Dashboard/>}/>
                     <Route path='/mapping' element={<Mapping/>}/>
                     <Route path='/grade-calculator' element={<GradeCalculator/>}/>
-                    <Route path='*' element={<Error />}/>
+                    <Route path='*' element={<Error/>}/>
                 </Routes>
             </BrowserRouter>
         </NextUIProvider>

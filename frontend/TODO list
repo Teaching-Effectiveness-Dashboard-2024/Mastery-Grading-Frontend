@@ -3,3 +3,5 @@ API token validation
 password validation
 jwt auth
 youtube video inpage display
+OAuth implementation
+highlight navbar

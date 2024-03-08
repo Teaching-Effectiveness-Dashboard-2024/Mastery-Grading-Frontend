@@ -54,13 +54,26 @@ const LoggedInNavbar = (props)=>{
 
     return <>
 
-        <Navbar.Brand>
-            <MdPoll size={40}/> &nbsp;&nbsp;
-
-            <Text b color="inherit">
-                Mastery Grading App
-            </Text>
-        </Navbar.Brand>
+        <Navbar isBordered shouldHideOnScroll variant="sticky">
+            <Navbar.Brand>
+                <MdPoll size={40}/> &nbsp;&nbsp;
+                <Text b color="inherit" hideIn="xs">
+                    Mastery Grading App
+                </Text>
+            </Navbar.Brand>
+            <Navbar.Content hideIn="xs" variant="underline">
+                <Navbar.Link href="/dashboard">Dashboard</Navbar.Link>
+                <Navbar.Link href="/mapping">Mapping</Navbar.Link>
+                <Navbar.Link href="/grade-calculator">Grade Calculator</Navbar.Link>
+            </Navbar.Content>
+            <Navbar.Content>
+                <Navbar.Item>
+                    <Button auto flat color={"error"} onClick={logoutHandler} >
+                        Logout
+                    </Button>
+                </Navbar.Item>
+            </Navbar.Content>
+        </Navbar>
 
 
     </>
