@@ -1,5 +1,6 @@
 import {Button, Grid, Text} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
+import {logDOM} from "@testing-library/react";
 
 
 
@@ -10,7 +11,7 @@ const Error = ()=>{
     const sendLogin = ()=>{
         navigate("/");
     }
-
+    console.log("hello");
 
     return (
         <Grid.Container gap={4} >

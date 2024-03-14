@@ -1,12 +1,12 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {createTheme, NextUIProvider} from '@nextui-org/react';
-import Error from "./Components/Error/Error";
-import Landing from "./Components/Landing/Landing";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Error from "./Components/Error/Error.js";
+import Landing from "./Components/Landing/Landing.js";
+import Dashboard from "./Components/Dashboard/Dashboard.js";
 import {useState} from "react";
-import GradeCalculator from "./Components/GradeCalculator/GradeCalculator";
-import Mapping from "./Components/Mapping/Mapping";
+import  GradeCalculator from "./Components/GradeCalculator/GradeCalculator.js";
+import Mapping from "./Components/Mapping/Mapping.js";
 
 
 const theme = createTheme({
@@ -44,7 +44,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Landing/>}/>
-                    <Route path='/dashboard' element={<Dashboard/>}/>
+                    <Route path='/dashboard' element={<Dashboard />}/>
                     <Route path='/mapping' element={<Mapping/>}/>
                     <Route path='/grade-calculator' element={<GradeCalculator/>}/>
                     <Route path='*' element={<Error/>}/>

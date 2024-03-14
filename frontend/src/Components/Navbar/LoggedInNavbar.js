@@ -9,10 +9,10 @@ import axios from "axios";
 
 
 const LoggedInNavbar = (props)=>{
-    console.log("from navbar", props);
+    // console.log("from navbar", props);
     const navigate = useNavigate()
 
-
+    const pageNumber  = props.pageNumber;
     const [visible, setVisible] = useState(false);
 
     const closeHandler = () => {
@@ -61,10 +61,10 @@ const LoggedInNavbar = (props)=>{
                     Mastery Grading App
                 </Text>
             </Navbar.Brand>
-            <Navbar.Content hideIn="xs" variant="underline">
-                <Navbar.Link href="/dashboard">Dashboard</Navbar.Link>
-                <Navbar.Link href="/mapping">Mapping</Navbar.Link>
-                <Navbar.Link href="/grade-calculator">Grade Calculator</Navbar.Link>
+            <Navbar.Content hideIn="xs" variant="underline" activeColor="primary">
+                <Navbar.Link href="/dashboard"  isActive={pageNumber === 1}>Dashboard</Navbar.Link>
+                <Navbar.Link href="/mapping" isActive={pageNumber === 2}>Mapping</Navbar.Link>
+                <Navbar.Link href="/grade-calculator" isActive={pageNumber === 3}>Grade Calculator</Navbar.Link>
             </Navbar.Content>
             <Navbar.Content>
                 <Navbar.Item>

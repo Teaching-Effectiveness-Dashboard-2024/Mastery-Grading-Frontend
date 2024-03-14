@@ -34,7 +34,7 @@ const Landing = () => {
 
         const email = localStorage.getItem("email")
 
-        console.log(email);
+        console.log("hello" + email);
         if(email !=null){
             navigate('/dashboard')
         }
@@ -49,7 +49,6 @@ const Landing = () => {
     const handleLoginEmailChange = (e) => setLoginEmail(e.target.value)
 
     const handleLoginPasswordChange = (e) => setLoginPassword(e.target.value)
-
 
     const apiTokenChange = (e) => setSignupData({...signupData, api_token: e.target.value})
 
@@ -365,7 +364,7 @@ const Landing = () => {
         </Grid.Container>
     </div>
 
-    return <>
+    return (<>
 
 
         <Grid.Container gap={2}>
@@ -386,7 +385,7 @@ const Landing = () => {
                 <Footer/>
             </Grid>
         </Grid.Container>
-    </>
+    </>)
 
 }
 

@@ -16,7 +16,9 @@ const GradeCalculator = ()=>{
     return (
         <Grid.Container gap={4} >
             <Grid md={12}>
-                <LoggedInNavbar/>
+                <LoggedInNavbar
+                    pageNumber={3}
+                />
             </Grid>
             <Grid md={12} justify='center'>
                 <Text h2>Dashboard page</Text>
