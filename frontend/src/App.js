@@ -7,6 +7,7 @@ import Dashboard from "./Components/Dashboard/Dashboard.js";
 import {useState} from "react";
 import  GradeCalculator from "./Components/GradeCalculator/GradeCalculator.js";
 import Mapping from "./Components/Mapping/Mapping.js";
+import CreateMapping from "./Components/Mapping/CreateMapping";
 
 
 const theme = createTheme({
@@ -46,6 +47,7 @@ function App() {
                     <Route path='/' element={<Landing/>}/>
                     <Route path='/dashboard' element={<Dashboard />}/>
                     <Route path='/mapping' element={<Mapping/>}/>
+                    <Route path='/mapping/create-mapping' element={<CreateMapping/>}/>
                     <Route path='/grade-calculator' element={<GradeCalculator/>}/>
                     <Route path='*' element={<Error/>}/>
                 </Routes>

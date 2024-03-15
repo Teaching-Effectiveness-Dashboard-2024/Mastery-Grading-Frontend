@@ -42,8 +42,12 @@ const Mapping = ()=>{
     },[])
 
 
+    const createMappingHandler = (e)=>{
 
-    let page = <Grid.Container gap={4} >
+        navigate('/mapping/create-mapping')
+    }
+
+    let page = <Grid.Container gap={2} >
         <Grid md={12}>
             <LoggedInNavbar
                 pageNumber={2}
@@ -69,7 +73,7 @@ const Mapping = ()=>{
                 <Card.Divider />
                 <Card.Footer>
                     <Row justify="flex-end">
-                        <Button size="sm">Create Mapping</Button>
+                        <Button size="sm" onClick={createMappingHandler}>Create Mapping</Button>
                     </Row>
                 </Card.Footer>
             </Card>
