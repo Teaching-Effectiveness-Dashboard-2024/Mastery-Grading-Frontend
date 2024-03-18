@@ -13,19 +13,7 @@ const LoggedInNavbar = (props)=>{
     const navigate = useNavigate()
 
     const pageNumber  = props.pageNumber;
-    const [visible, setVisible] = useState(false);
-
-    const closeHandler = () => {
-        setVisible(false);
-        console.log("closed");
-    };
-
-    const data = localStorage.getItem('userName')
-
-
-    const poll = props.poll ? <Navbar.Link href={'poll'} isActive>Poll here</Navbar.Link> : <Navbar.Link href={'poll'} >Poll here</Navbar.Link>
-    const leader = props.leader ? <Navbar.Link href={'leaderboard'} isActive>Leaderboard</Navbar.Link> : <Navbar.Link href={'leaderboard'} >Leaderboard</Navbar.Link>
-
+    
     const logoutHandler = (e)=>{
 
         localStorage.clear();

@@ -43,7 +43,6 @@ const Mapping = ()=>{
 
 
     const createMappingHandler = (e)=>{
-
         navigate('/mapping/create-mapping')
     }
 

@@ -152,14 +152,14 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter Email"} fullWidth={true}
+                <Input color="primary" clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter Email"} fullWidth={true}
                        onChange={handleLoginEmailChange} value={loginEmail}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input.Password clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter Password"}
+                <Input.Password color="primary" clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter Password"}
                                 fullWidth={true} onChange={handleLoginPasswordChange} value={loginPassword}/>
             </Grid>
             <Grid  md={2}></Grid>
@@ -224,7 +224,7 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter your Email"} fullWidth={true}
+                <Input color="primary" clearable type="email" size="md" variant="bordered" labelPlaceholder={"Enter your Email"} fullWidth={true}
                        onChange={signupEmailChange} value={signupData.email}/>
             </Grid>
             <Grid  md={2}></Grid>
@@ -232,21 +232,21 @@ const Landing = () => {
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Password"}
+                <Input color="primary" clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Password"}
                        fullWidth={true} onChange={signupPasswordChange} value={signupData.password}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid  md={2}></Grid>
             <Grid  md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your Password"}
+                <Input color="primary" clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Re-Enter Your Password"}
                        fullWidth={true} onChange={signupRePasswordChange} value={signupData.rePassword}/>
             </Grid>
             <Grid  md={2}></Grid>
 
             <Grid md={2}></Grid>
             <Grid md={8} justify={"center"} style={{marginTop: "5%"}}>
-                <Input clearable type="text" size="md" variant="bordered" labelPlaceholder={"Enter your Canvas API token"} fullWidth={true}
+                <Input color="primary" clearable type="Password" size="md" variant="bordered" labelPlaceholder={"Enter your Canvas API token"} fullWidth={true}
                        onChange={apiTokenChange} value={signupData.api_token}/>
             </Grid>
             <Grid md={2}></Grid>
@@ -353,7 +353,8 @@ const Landing = () => {
             <Grid md={1}></Grid>
             <Grid md={11} style={{marginTop: "1%"}}>
 
-                <Link color="success" fullWidth={true} isExternal underline block href="https://youtu.be/cZ5cn8stjM0">
+                <Link color="success" fullWidth={true} isExternal underline block href="https://youtu.be/cZ5cn8stjM0" target="_blank" // Explicitly stating to open in a new tab
+                      rel="noopener noreferrer">
                     Click on this link for a video demo
                 </Link>
             </Grid>

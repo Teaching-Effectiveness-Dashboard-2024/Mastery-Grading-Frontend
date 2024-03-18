@@ -5,3 +5,12 @@ jwt auth
 youtube video inpage display
 OAuth implementation
 highlight navbar
+
+
+create a json array of objects that stores data of all rows where each row's data is an object of type {"assignmentGroup":"/*text written*/",
+"gradingScheme"/*selected grading scheme from dropdown*/"
+"numberOfAssignments": "number selected from dropdown"
+"maxScore":numberOfAssignments*100
+}
+
+Write logic so that the dropdown and text fields data is stored and reused to make json object
