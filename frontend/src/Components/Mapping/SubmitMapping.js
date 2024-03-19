@@ -13,9 +13,11 @@ const SubmitMapping = () => {
     const location = useLocation();
     const { selectedClassName, rows } = location.state || { selectedClassName: null, rows: [] };
 
-    if(selectedClassName===null){
-        navigate('mapping/create-mapping')
-    }
+    useEffect( ()=>{
+        if(selectedClassName===null){
+            navigate('/mapping/create-mapping')
+        }
+    },[])
     // Now you can use className and rows as needed in your component
     console.log('Received className:', selectedClassName);
     console.log('Received rows:', rows);
@@ -31,16 +33,19 @@ const SubmitMapping = () => {
             </Grid.Container>
 
             {letterGrades.map((grade, index) => (
+
                 <div key={index} css={{width: "100%"}}>
-                    <Grid.Container gap={2} alignItems="center" justify="flex-start">
+
+                    <Grid.Container gap={2} alignItems="center" justify="flex-start" wrap>
                         <Grid md={1}></Grid>
                         <Grid md={1}>
                             <Text h3 color={index % 2 === 0 ? "warning" : "secondary"}> {grade}</Text>
                         </Grid>
                         {rows.map((row, idx) => (
-                            <Grid md={1} key={idx}>
+                            <Grid md={1.5} key={idx}>
                                 <Input
                                     label={row.assignmentGroup || "Assignment Group"}
+                                    labelRight={"/" + row.maxScore}
                                     type="number"
                                     bordered
                                     fullWidth
@@ -51,7 +56,7 @@ const SubmitMapping = () => {
                         ))}
                     </Grid.Container>
                     {index < letterGrades.length - 1 && (
-                        <hr style={{ width: '100%', borderColor: 'rgba(0,0,0,0.1)', borderWidth: '1px', borderStyle: 'solid', marginTop: '10px', marginBottom: '10px' }} />
+                        <hr style={{ width: '100%', maxWidth:"100%", borderColor: 'rgba(0,0,0,0.1)',marginLeft:"10%", marginRight:"10%", borderWidth: '1px', borderStyle: 'solid', marginTop: '10px', marginBottom: '10px' }} />
                     )}
                 </div>
             ))}

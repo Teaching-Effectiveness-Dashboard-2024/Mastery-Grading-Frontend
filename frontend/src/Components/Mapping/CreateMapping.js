@@ -158,40 +158,6 @@ const CreateMapping = () => {
             <Grid md={2}></Grid>
 
             <Grid md={2}></Grid>
-            {/*<Grid md={8} css={{ display:"block !important", width:'100%'}}>*/}
-            {/*         {rows.map((row, index) => (*/}
-            {/*             <Grid.Container key={index} gap={2} css={{ width: '100%', display:"flex" }}>*/}
-            {/*                 <Grid md={5} justify="left">*/}
-            {/*                     <Input labelPlaceholder="Assignment Group" fullWidth />*/}
-            {/*                 </Grid>*/}
-            {/*                 <Grid md={3} justify="center">*/}
-            {/*                     <Dropdown>*/}
-            {/*                         <Dropdown.Button flat color="primary">*/}
-            {/*                            Select grading scheme*/}
-            {/*                        </Dropdown.Button>*/}
-            {/*                        <Dropdown.Menu aria-label="Grading Schemes" color="primary">*/}
-            {/*                            {gradingSchemes.map((scheme) => (*/}
-            {/*                                <Dropdown.Item key={scheme}>{scheme}</Dropdown.Item>*/}
-            {/*                             ))}*/}
-            {/*                        </Dropdown.Menu>*/}
-            {/*                    </Dropdown>*/}
-            {/*                </Grid>*/}
-            {/*                /!*<Spacer></Spacer>*!/*/}
-            {/*                <Grid md={2} justify="center">*/}
-            {/*                    <Dropdown>*/}
-            {/*                        <Dropdown.Button flat color="primary">1</Dropdown.Button>*/}
-            {/*                        <Dropdown.Menu aria-label="Number Range" color="primary">*/}
-            {/*                            {Array.from({ length: 20 }, (_, i) => i).map((number) => (*/}
-            {/*                                <Dropdown.Item key={number}>{number}</Dropdown.Item>*/}
-            {/*                             ))}*/}
-            {/*                        </Dropdown.Menu>*/}
-            {/*                    </Dropdown>*/}
-            {/*                </Grid>*/}
-            {/*                /!*<Spacer></Spacer>*!/*/}
-            {/*                <Grid md={2} justify="center"> <Text b>100</Text></Grid>*/}
-            {/*            </Grid.Container>*/}
-            {/*        ))}*/}
-            {/*</Grid>*/}
 
             <Grid md={8} css={{ display: "block !important", width: '100%' }}>
                 {rows.map((row, index) => (
