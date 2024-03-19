@@ -32,6 +32,7 @@ const CreateMapping = () => {
             if (i === index) {
                 return { ...row, [field]: value, ...(field === 'numberOfAssignments' && { maxScore: value * 100 }) };
             }
+            console.log(row);
             return row;
         });
         setRows(updatedRows);
@@ -170,7 +171,7 @@ const CreateMapping = () => {
                     onChange={(e) => handleRowChange(index, 'assignmentGroup', e.target.value)}
                     />
                     </Grid>
-                        <Grid md={3} justify="center">
+                    <Grid md={3} justify="center">
                             <Dropdown>
                                 <Dropdown.Button flat color="primary">
                                     {row.gradingScheme || 'Select grading scheme'}
@@ -192,28 +193,16 @@ const CreateMapping = () => {
                                     ))}
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </Grid>
-                        <Grid md={2} justify="center">
-                            <Dropdown>
-                                <Dropdown.Button flat color="primary">{row.numberOfAssignments || 0}</Dropdown.Button>
-                                <Dropdown.Menu
-                                    aria-label="Number Range"
-                                    color="primary"
-                                    disallowEmptySelection
-                                    selectionMode="single"
-                                    selectedKeys={row.gradingScheme ? [row.gradingScheme] : []}
-                                    onSelectionChange={(keys) => handleRowChange(index, 'numberOfAssignments', keys.values().next().value)}>
-                                    {Array.from({ length: 20 }, (_, i) => i + 1).map((number) => (
-                                        <Dropdown.Item
-                                            key={number}
-                                            // onClick={() => handleRowChange(index, 'numberOfAssignments', number)}
-                                        >
-                                            {number}
-                                        </Dropdown.Item>
-                                    ))}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Grid>
+                    </Grid>
+                    <Grid md={2} justify="center">
+                    <Input
+                    labelPlaceholder="No of Assignments"
+                    fullWidth
+                    type="number"
+                    value={row.numberOfAssignments}
+                    onChange={(e) => handleRowChange(index, 'numberOfAssignments', e.target.value)}
+                    />
+                    </Grid>
                     <Grid md={2} justify="center"> <Text b>{row.maxScore}</Text></Grid>
                     </Grid.Container>
                 ))}
